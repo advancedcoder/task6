@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <locale.h>
+
 #include <string.h>
 
 struct Students
@@ -12,9 +13,9 @@ struct Students
 FILE *studentsdata;
 
 void studentlist();
-/*void exelentgrades();
+void exelentgrades();
 void glebagrades();
-void ashkargrades();*/
+void ashkargrades();
 
 void studentlist()
 {
@@ -31,6 +32,18 @@ void studentlist()
 	}
 }
 
+struct student
+{
+	char name[30];
+	int mark1, mark2, mark3, mark4, mark5;
+};
+
+void studentlist(student *mas, int *n);
+void exelentgrades(student *mas, int n);
+void glebagrades(student *mas, int n);
+void ashkargrades(student *mas, int n);
+
+
 int main()
 {
 	setlocale(LC_CTYPE, "Rus");
@@ -38,31 +51,63 @@ int main()
 	{
 		int menu1;
 		printf("|***********************************************************|\n"
-			"|                Ââåäèòå íîìåð ñ ìåíþ íèæå                  |\n"
+			"|                Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã®Ã¬Ã¥Ã° Ã± Ã¬Ã¥Ã­Ã¾ Ã­Ã¨Ã¦Ã¥                  |\n"
 			"|***********************************************************|\n"
-			"|1-Ñïèñîê ñòóäåíòîâ                                         |\n"
-			"|2-Ñïèñîê ñòóäåíòîâ êîòîðûå ñäàëè âñå ýêçàìåíû òîëüêî íà 5  |\n"
-			"|3-Ñïèñîê ñòóäåíòîâ êîòîðûå èìåþò 3                         |\n"
-			"|4-Ñïèñîê ñòóäåíòîâ êîòîðûå èìåþò 2                         |\n"
-			"|5-Âûõîä                                                    |\n"
+			"|1-Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã±Ã²Ã³Ã¤Ã¥Ã­Ã²Ã®Ã¢                                         |\n"
+
+			"|2-Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã±Ã²Ã³Ã¤Ã¥Ã­Ã²Ã®Ã¢ ÃªÃ®Ã²Ã®Ã°Ã»Ã¥ Ã±Ã¤Ã Ã«Ã¨ Ã¢Ã±Ã¥ Ã½ÃªÃ§Ã Ã¬Ã¥Ã­Ã» Ã²Ã®Ã«Ã¼ÃªÃ® Ã­Ã  5  |\n"
+
+			"|2-Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã±Ã²Ã³Ã¤Ã¥Ã­Ã²Ã®Ã¢ ÃªÃ®Ã²Ã®Ã°Ã»Ã¥ Ã±Ã¤Ã Ã«Ã¨ Ã¢Ã±Ã¥ Ã¦ÃªÃ§Ã Ã¬Ã¥Ã­Ã» Ã²Ã®Ã«Ã¼ÃªÃ® Ã­Ã  5  |\n"
+
+			"|3-Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã±Ã²Ã³Ã¤Ã¥Ã­Ã²Ã®Ã¢ ÃªÃ®Ã²Ã®Ã°Ã»Ã¥ Ã¨Ã¬Ã¥Ã¾Ã² 3                         |\n"
+			"|4-Ã‘Ã¯Ã¨Ã±Ã®Ãª Ã±Ã²Ã³Ã¤Ã¥Ã­Ã²Ã®Ã¢ ÃªÃ®Ã²Ã®Ã°Ã»Ã¥ Ã¨Ã¬Ã¥Ã¾Ã² 2                         |\n"
+			"|5-Ã‚Ã»ÃµÃ®Ã¤                                                    |\n"
 			"|***********************************************************|\n");
 		printf(">>");
 		scanf("%i", &menu1);
+
 		system("cls");
 		switch (menu1)
 		{
 		case 1:studentlist();
 			break;
-		case 2: //exelentgrades();
+		case 2: exelentgrades();
 			break;
-		case 3://glebagrades();
+		case 3:glebagrades();
 			break;
-		case 4://ashkargrades();
+		case 4:ashkargrades();
 			break;
 		case 5: break;
 		default: printf("Error!\n");
 		}
 		return 0;
 	}
+
+
+		system("cls");
+
+			switch (menu1)
+			{
+			case 1: {
+				studentlist();
+				break;
+			}
+
+			case 2: {
+				exelentgrades();
+				break; }
+			case 3: {
+				glebagrades();
+				break; }
+			case 4: {
+				ashkargrades();
+				break; }
+			case 5: break;
+			default: printf("Error!\n");
+			}
+
+	printf("The program is completed\n");
+	return 0;
+
 }
 	
