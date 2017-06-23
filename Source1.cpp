@@ -3,14 +3,14 @@
 #include <locale.h>
 #include <string.h>
 
-char string[30]; //ñòðîêà, êîòîðàÿ ñ÷èòûâàåòñÿ ñ ýòîãî ñàìîãî
+char string[30]; //ÑÑ‚Ñ€Ð¾ÐºÐ°, ÐºÐ¾Ñ‚Ð¾Ñ€Ð°Ñ ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ñ ÑÑ‚Ð¾Ð³Ð¾ ÑÐ°Ð¼Ð¾Ð³Ð¾
 char *name;
 
 FILE *studentsdata;
 
 void studentlist();
-//void exelentgrades();
-//void glebagrades();
+void exelentgrades(); //ÐºÑ€Ð¸Ð²Ð¾, Ð½Ð¾ Ð¸Ð½Ð°Ñ‡Ðµ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚ Â¯\_(ãƒ„)_/Â¯ 
+void glebagrades();
 void ashkargrades();
 
 void studentlist()
@@ -22,8 +22,8 @@ void studentlist()
 	studentsdata = fopen("students.txt", "r");
 	while (!feof(studentsdata)) {
 		fgets(string, 30, studentsdata);
-		name = strtok(string, ":");	
-		printf("%s\n", name);
+		name = strtok(string, ":");
+    printf("%s\n", name);
 	}
 	fclose(studentsdata);
 }
@@ -42,17 +42,74 @@ void ashkargrades()
 		name = strtok(string, ":");
 		marks = strtok(NULL, " ");
 		while (marks != NULL) {
-			if (!strcmp(marks,"2"))
+			if (!strcmp(marks, "2"))
 				k++;
 			marks = strtok(NULL, " ");
 		}
 		if (k == 1)
-			printf("%s\n", name);	
+			printf("%s\n", name);
 		k = 0;
 	}
 	fclose(studentsdata);
 }
-
+void glebagrades() {
+	char *marks;
+	int n = 0;
+	FILE *studentsdata;
+	system("cls");
+	printf("Ð’Ñ‹Ð²Ð¾Ð´ Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð², Ð¾Ñ†ÐµÐ½ÐºÐ° ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¿Ð¾ Ð²ÑÐµÐ¼ ÑÐºÐ·Ð°Ð¼ÐµÐ½Ð°Ð¼ 5\n");
+	studentsdata = fopen("students.txt", "r");
+	if (studentsdata) {
+		while (!feof(studentsdata))
+		{
+			fgets(string, 30, studentsdata);
+			name = strtok(string, ":");
+			marks = strtok(NULL, " ");
+			while (marks != NULL) {
+				if (strcmp(marks, "3")) {
+					marks = strtok(NULL, " ");
+				}
+				else {
+					n++;
+					marks = strtok(NULL, " ");
+				}
+			}
+			if (n>0) {
+				printf("%s\n", name);
+				n = 0;
+			}
+		}
+	}
+}
+void exelentgrades(){
+char *marks;
+	int n = 0;
+	FILE *studentsdata;
+	system("cls");
+	printf("Ð’Ñ‹Ð²Ð¾Ð´ Ð²ÑÐµÑ… ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð², Ð¾Ñ†ÐµÐ½ÐºÐ° ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¿Ð¾ Ð²ÑÐµÐ¼ ÑÐºÐ·Ð°Ð¼ÐµÐ½Ð°Ð¼ 5\n");
+	studentsdata = fopen("students.txt", "r");
+	if (studentsdata) {
+		while (!feof(studentsdata))
+		{
+			fgets(string, 30, studentsdata);
+			name = strtok(string, ":");
+			marks = strtok(NULL, " ");
+			while (marks != NULL) {
+				if (strcmp(marks, "5")) {
+					marks = strtok(NULL, " ");
+				}
+				else {
+					n++;
+					marks = strtok(NULL, " ");
+				}
+			}
+			if (n == 4) {
+				printf("%s\n", name);
+				n = 0;
+			}
+		}
+	}
+}
 int main()
 {
 	setlocale(LC_CTYPE, "Rus");
@@ -60,13 +117,13 @@ int main()
 	{
 		int menu1;
 		printf("|***********************************************************|\n"
-			"|                Ââåäèòå íîìåð ñ ìåíþ íèæå                  |\n"
+			"|                Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ñ Ð¼ÐµÐ½ÑŽ Ð½Ð¸Ð¶Ðµ                  |\n"
 			"|***********************************************************|\n"
-			"|1-Ñïèñîê ñòóäåíòîâ                                         |\n"
-			"|2-Ñïèñîê ñòóäåíòîâ êîòîðûå ñäàëè âñå ýêçàìåíû òîëüêî íà 5  |\n"
-			"|3-Ñïèñîê ñòóäåíòîâ êîòîðûå èìåþò 3                         |\n"
-			"|4-Ñïèñîê ñòóäåíòîâ êîòîðûå èìåþò 2                         |\n"
-			"|5-Âûõîä                                                    |\n"
+			"|1-Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð²                                         |\n"
+			"|2-Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ ÑÐ´Ð°Ð»Ð¸ Ð²ÑÐµ ÑÐºÐ·Ð°Ð¼ÐµÐ½Ñ‹ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð½Ð° 5  |\n"
+			"|3-Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð¸Ð¼ÐµÑŽÑ‚ 3                         |\n"
+			"|4-Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÑ‚ÑƒÐ´ÐµÐ½Ñ‚Ð¾Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð¸Ð¼ÐµÑŽÑ‚ 2                         |\n"
+			"|5-Ð’Ñ‹Ñ…Ð¾Ð´                                                    |\n"
 			"|***********************************************************|\n");
 		printf(">>");
 		scanf("%i", &menu1);
@@ -75,9 +132,9 @@ int main()
 		{
 		case 1: studentlist();
 			break;
-		case 2: //exelentgrades();
+		case 2: exelentgrades();
 			break;
-		case 3://glebagrades();
+		case 3:glebagrades();
 			break;
 		case 4: ashkargrades();
 			break;
@@ -86,4 +143,3 @@ int main()
 		}
 	}
 }
-	
