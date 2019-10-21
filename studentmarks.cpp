@@ -23,7 +23,7 @@ void studentlist()
 	while (!feof(studentsdata)) {
 		fgets(string, 30, studentsdata);
 		name = strtok(string, ":");
-		printf("%s\n", name);
+    printf("%s\n", name);
 	}
 	fclose(studentsdata);
 }
@@ -54,7 +54,7 @@ void ashkargrades()
 }
 void glebagrades() {
 	char *marks;
-	int n = 0;
+	int i = 0;
 	FILE *studentsdata;
 	system("cls");
 	printf("Вывод всех студентов, оценка которых по всем экзаменам 5\n");
@@ -70,20 +70,20 @@ void glebagrades() {
 					marks = strtok(NULL, " ");
 				}
 				else {
-					n++;
+					i++;
 					marks = strtok(NULL, " ");
 				}
 			}
-			if (n>0) {
+			if (i>0) {
 				printf("%s\n", name);
-				n = 0;
+				i = 0;
 			}
 		}
 	}
 }
 void exelentgrades(){
 char *marks;
-	int n = 0;
+	int i = 0;
 	FILE *studentsdata;
 	system("cls");
 	printf("Вывод всех студентов, оценка которых по всем экзаменам 5\n");
@@ -99,13 +99,13 @@ char *marks;
 					marks = strtok(NULL, " ");
 				}
 				else {
-					n++;
+					i++;
 					marks = strtok(NULL, " ");
 				}
 			}
-			if (n == 4) {
+			if (i == 4) {
 				printf("%s\n", name);
-				n = 0;
+				i = 0;
 			}
 		}
 	}
@@ -134,7 +134,7 @@ int main()
 			break;
 		case 2: exelentgrades();
 			break;
-		case 3:glebagrades();
+		case 3: glebagrades();
 			break;
 		case 4: ashkargrades();
 			break;
